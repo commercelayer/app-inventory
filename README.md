@@ -1,2 +1,1 @@
-# app-inventory
-Commerce Layer application for managing inventory.
+packages/app/README.md

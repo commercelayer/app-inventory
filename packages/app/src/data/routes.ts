@@ -8,5 +8,9 @@ export const appRoutes = {
   home: {
     path: '/',
     makePath: () => '/'
+  },
+  stockLocation: {
+    path: '/:stockLocationId',
+    makePath: (stockLocationId: string) => `/${stockLocationId}`
   }
 }

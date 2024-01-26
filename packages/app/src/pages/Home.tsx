@@ -56,7 +56,6 @@ export function Home(): JSX.Element {
       <FilteredList
         type='stock_locations'
         query={{
-          include: ['stock_items'],
           sort: {
             created_at: 'desc'
           }

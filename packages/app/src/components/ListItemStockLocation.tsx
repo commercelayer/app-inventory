@@ -27,12 +27,7 @@ export const ListItemStockLocation = withSkeletonTemplate<Props>(
         }}
       >
         <div>
-          <Text weight='bold'>
-            {resource.name}{' '}
-            {resource.stock_items != null && (
-              <>({resource.stock_items.length})</>
-            )}
-          </Text>
+          <Text weight='bold'>{resource.name}</Text>
         </div>
         <Icon name='caretRight' />
       </ListItem>

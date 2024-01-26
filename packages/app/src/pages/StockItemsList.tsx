@@ -87,7 +87,7 @@ export function StockItemsList(): JSX.Element {
     >
       <SearchWithNav
         queryString={queryString}
-        onUpdate={(qs) => {
+        onUpdate={(qs: any) => {
           navigate(`?${qs}`, {
             replace: true
           })
@@ -100,7 +100,7 @@ export function StockItemsList(): JSX.Element {
         type='stock_items'
         query={{
           filters: { stock_location_id_eq: stockLocationId },
-          include: ['sku'],
+          include: ['sku', 'reserved_stock'],
           sort: {
             created_at: 'desc'
           }

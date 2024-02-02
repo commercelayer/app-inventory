@@ -1,5 +1,6 @@
 import type { Resource } from '@commercelayer/sdk/lib/cjs/resource'
 
+export * from './resources/skus'
 export * from './resources/stockItems'
 export * from './resources/stockLocations'
 

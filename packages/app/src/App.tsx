@@ -1,5 +1,6 @@
 import { ErrorNotFound } from '#pages/ErrorNotFound'
 import { Home } from '#pages/Home'
+import { StockItemDetails } from '#pages/StockItemDetails'
 import { StockItemNew } from '#pages/StockItemNew'
 import { StockItemsList } from '#pages/StockItemsList'
 import {
@@ -44,6 +45,9 @@ export function App(): JSX.Element {
                 </Route>
                 <Route path={appRoutes.stockLocation.path}>
                   <StockItemsList />
+                </Route>
+                <Route path={appRoutes.stockItem.path}>
+                  <StockItemDetails />
                 </Route>
                 <Route path={appRoutes.newStockItem.path}>
                   <StockItemNew />

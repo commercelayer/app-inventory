@@ -1,3 +1,4 @@
+import { ListEmptyState } from '#components/ListEmptyState'
 import { ListItemStockItem } from '#components/ListItemStockItem'
 import { stockItemsInstructions } from '#data/filters'
 import { appRoutes } from '#data/routes'
@@ -113,7 +114,7 @@ export function StockItemsList(): JSX.Element {
           ) : undefined
         }
         ItemTemplate={ListItemStockItem}
-        emptyState={<EmptyState title='No stock items yet!' />}
+        emptyState={<ListEmptyState />}
       />
     </PageLayout>
   )

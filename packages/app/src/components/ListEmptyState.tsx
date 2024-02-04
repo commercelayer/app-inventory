@@ -18,7 +18,7 @@ export const ListEmptyState: FC = () => {
 
   const stockLocationId = params?.stockLocationId ?? ''
 
-  if (canUser('create', 'skus')) {
+  if (canUser('create', 'stock_items')) {
     return (
       <EmptyState
         title='No stock items yet!'

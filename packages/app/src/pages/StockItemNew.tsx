@@ -31,7 +31,7 @@ export function StockItemNew(): JSX.Element {
 
   const goBackUrl = appRoutes.stockLocation.makePath(stockLocationId)
 
-  if (!canUser('create', 'skus')) {
+  if (!canUser('create', 'stock_items')) {
     return (
       <PageLayout
         title='New stock item'

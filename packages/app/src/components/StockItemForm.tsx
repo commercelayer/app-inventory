@@ -10,7 +10,7 @@ import {
   Spacer,
   Text
 } from '@commercelayer/app-elements'
-import type { Sku } from '@commercelayer/sdk'
+import type { Sku, StockItem } from '@commercelayer/sdk'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useState } from 'react'
 import { useForm, type UseFormSetError } from 'react-hook-form'
@@ -26,6 +26,7 @@ const stockItemFormSchema = z.object({
 export type StockItemFormValues = z.infer<typeof stockItemFormSchema>
 
 interface Props {
+  resource?: StockItem
   defaultValues?: Partial<StockItemFormValues>
   isSubmitting: boolean
   onSubmit: (
@@ -36,6 +37,7 @@ interface Props {
 }
 
 export function StockItemForm({
+  resource,
   defaultValues,
   onSubmit,
   apiError,
@@ -50,6 +52,7 @@ export function StockItemForm({
     useAddItemOverlay()
 
   const [selectedItemResource, setSelectedItemResource] = useState<Sku>()
+  const sku = resource?.sku != null ? resource?.sku : selectedItemResource
   const stockItemFormWatchedItem = stockItemFormMethods.watch('item')
 
   return (
@@ -75,7 +78,7 @@ export function StockItemForm({
                 />
               ) : (
                 <ListItemSku
-                  resource={selectedItemResource}
+                  resource={sku}
                   disabled={defaultValues?.id != null}
                   variant='card'
                   onSelect={() => {

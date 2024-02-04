@@ -1,6 +1,7 @@
 import {
   Button,
   Dropdown,
+  DropdownDivider,
   DropdownItem,
   EmptyState,
   PageLayout,
@@ -68,19 +69,19 @@ export const StockItemDetails: FC = () => {
 
   const pageTitle = stockItem?.sku?.name
 
-  // const contextMenuEdit = canUser('update', 'stock_items') && (
-  //   <DropdownItem
-  //     label='Edit'
-  //     onClick={() => {
-  //       setLocation(
-  //         appRoutes.editStockItem.makePath(stockLocationId, stockItemId)
-  //       )
-  //     }}
-  //   />
-  // )
+  const contextMenuEdit = canUser('update', 'stock_items') && (
+    <DropdownItem
+      label='Edit'
+      onClick={() => {
+        setLocation(
+          appRoutes.editStockItem.makePath(stockLocationId, stockItemId)
+        )
+      }}
+    />
+  )
 
-  // const contextMenuDivider = canUser('update', 'stock_items') &&
-  //   canUser('destroy', 'stock_items') && <DropdownDivider />
+  const contextMenuDivider = canUser('update', 'stock_items') &&
+    canUser('destroy', 'stock_items') && <DropdownDivider />
 
   const contextMenuDelete = canUser('destroy', 'stock_items') && (
     <DropdownItem
@@ -95,8 +96,8 @@ export const StockItemDetails: FC = () => {
     <Dropdown
       dropdownItems={
         <>
-          {/* {contextMenuEdit}
-          {contextMenuDivider} */}
+          {contextMenuEdit}
+          {contextMenuDivider}
           {contextMenuDelete}
         </>
       }
@@ -141,7 +142,7 @@ export const StockItemDetails: FC = () => {
           </Spacer>
         </Spacer>
       </SkeletonTemplate>
-      {canUser('destroy', 'skus') && (
+      {canUser('destroy', 'stock_items') && (
         <Overlay>
           <PageLayout
             title={`Confirm that you want to cancel the stock item related to ${stockItem?.sku?.code} (${stockItem?.sku?.name}) SKU.`}

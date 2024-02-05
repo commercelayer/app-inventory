@@ -68,6 +68,7 @@ export function StockItemNew(): JSX.Element {
         icon: 'x'
       }}
       scrollToTop
+      overlay
     >
       <Spacer bottom='14'>
         <StockItemForm

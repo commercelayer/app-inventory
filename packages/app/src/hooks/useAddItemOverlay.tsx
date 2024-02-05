@@ -37,7 +37,7 @@ export function useAddItemOverlay(): OverlayHook {
       })
 
       return (
-        <OverlayElement>
+        <OverlayElement backgroundColor='light'>
           <div className='w-full flex items-center gap-4'>
             <div className='flex-1'>
               <SearchWithNav

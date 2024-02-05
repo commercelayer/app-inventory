@@ -19,7 +19,7 @@ interface Props {
 
 export const ListItemSku = withSkeletonTemplate<Props>(
   ({ resource = makeSku(), variant, disabled = false, onSelect }) => {
-    const listItemCss = `${variant === 'card' ? 'rounded border' : ''} ${disabled ? 'bg-gray-50' : ''}`
+    const listItemCss = `bg-white ${variant === 'card' ? 'rounded border' : ''} ${disabled ? 'bg-gray-50' : ''}`
 
     return (
       <ListItem

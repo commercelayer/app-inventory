@@ -76,6 +76,7 @@ export function StockItemEdit(): JSX.Element {
         icon: 'x'
       }}
       scrollToTop
+      overlay
     >
       <Spacer bottom='14'>
         {!isLoading && stockItem != null ? (

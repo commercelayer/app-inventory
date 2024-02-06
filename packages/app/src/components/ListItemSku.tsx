@@ -24,6 +24,7 @@ export const ListItemSku = withSkeletonTemplate<Props>(
     return (
       <ListItem
         tag='a'
+        href='#'
         onClick={(e) => {
           e.preventDefault()
           if (onSelect != null) {

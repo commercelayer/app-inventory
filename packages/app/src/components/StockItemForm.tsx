@@ -64,8 +64,8 @@ export function StockItemForm({
         }}
       >
         <Section>
-          <Spacer top='6' bottom='4'>
-            <Text weight='semibold'>Item</Text>
+          <Spacer top='12' bottom='4'>
+            <Text weight='semibold'>SKU</Text>
             <Spacer top='2'>
               {stockItemFormWatchedItem == null ? (
                 <ButtonCard

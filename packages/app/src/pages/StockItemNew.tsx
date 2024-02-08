@@ -67,6 +67,7 @@ export function StockItemNew(): JSX.Element {
         label: 'Cancel',
         icon: 'x'
       }}
+      gap='only-top'
       scrollToTop
       overlay
     >

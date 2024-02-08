@@ -3,31 +3,27 @@ import {
   Icon,
   ListItem,
   Text,
-  withSkeletonTemplate
+  withSkeletonTemplate,
+  type ListItemProps
 } from '@commercelayer/app-elements'
 import type { Sku } from '@commercelayer/sdk'
 import { makeSku } from 'src/mocks/resources/skus'
 
-type ListItemSkuVariant = 'list' | 'card'
-
 interface Props {
   resource?: Sku
-  variant: ListItemSkuVariant
-  disabled?: boolean
+  variant: ListItemProps['variant']
+  disabled?: ListItemProps['disabled']
   onSelect?: (resource: Sku) => void
 }
 
 export const ListItemSku = withSkeletonTemplate<Props>(
   ({ resource = makeSku(), variant, disabled = false, onSelect }) => {
-    const listItemCss = `bg-white ${variant === 'card' ? 'rounded border' : ''} ${disabled ? 'bg-gray-50' : ''}`
-
     return (
       <ListItem
         tag='a'
-        href='#'
         onClick={(e) => {
           e.preventDefault()
-          if (onSelect != null) {
+          if (!disabled && onSelect != null) {
             onSelect(resource)
           }
         }}
@@ -37,7 +33,8 @@ export const ListItemSku = withSkeletonTemplate<Props>(
             src={resource.image_url as `https://${string}`}
           />
         }
-        className={listItemCss}
+        variant={variant}
+        disabled={disabled}
       >
         <div>
           <Text tag='div' variant='info' weight='semibold'>

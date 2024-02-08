@@ -143,7 +143,7 @@ export const StockItemDetails: FC = () => {
         </Spacer>
       </SkeletonTemplate>
       {canUser('destroy', 'stock_items') && (
-        <Overlay>
+        <Overlay backgroundColor='light'>
           <PageLayout
             title={`Confirm that you want to cancel the stock item related to ${stockItem?.sku?.code} (${stockItem?.sku?.name}) SKU.`}
             description='This action cannot be undone, proceed with caution.'

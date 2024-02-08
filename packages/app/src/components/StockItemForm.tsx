@@ -109,7 +109,7 @@ export function StockItemForm({
           </Spacer>
         </Section>
         <Spacer top='14'>
-          <Button type='submit' disabled={isSubmitting} className='w-full'>
+          <Button type='submit' disabled={isSubmitting} fullWidth>
             {defaultValues?.id == null ? 'Create' : 'Update'}
           </Button>
           <Spacer top='2'>

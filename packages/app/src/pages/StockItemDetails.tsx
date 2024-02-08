@@ -172,6 +172,7 @@ export const StockItemDetails: FC = () => {
                   })
                   .catch(() => {})
               }}
+              fullWidth
             >
               Delete stock item
             </Button>

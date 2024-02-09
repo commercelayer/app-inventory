@@ -10,7 +10,21 @@ export const appRoutes = {
     makePath: () => '/'
   },
   stockLocation: {
-    path: '/:stockLocationId',
-    makePath: (stockLocationId: string) => `/${stockLocationId}`
+    path: '/:stockLocationId/list',
+    makePath: (stockLocationId: string) => `/${stockLocationId}/list`
+  },
+  stockItem: {
+    path: '/:stockLocationId/list/:stockItemId',
+    makePath: (stockLocationId: string, stockItemId: string) =>
+      `/${stockLocationId}/list/${stockItemId}`
+  },
+  newStockItem: {
+    path: '/:stockLocationId/new',
+    makePath: (stockLocationId: string) => `/${stockLocationId}/new`
+  },
+  editStockItem: {
+    path: '/:stockLocationId/list/:stockItemId/edit',
+    makePath: (stockLocationId: string, stockItemId: string) =>
+      `/${stockLocationId}/list/${stockItemId}/edit`
   }
 }

@@ -1,3 +1,4 @@
+import { ListEmptyState } from '#components/ListEmptyState'
 import { ListItemStockItem } from '#components/ListItemStockItem'
 import { stockItemsInstructions } from '#data/filters'
 import { appRoutes } from '#data/routes'
@@ -105,8 +106,15 @@ export function StockItemsList(): JSX.Element {
             created_at: 'desc'
           }
         }}
+        actionButton={
+          canUser('create', 'stock_items') ? (
+            <Link href={appRoutes.newStockItem.makePath(stockLocationId)}>
+              Add new
+            </Link>
+          ) : undefined
+        }
         ItemTemplate={ListItemStockItem}
-        emptyState={<EmptyState title='No stock items yet!' />}
+        emptyState={<ListEmptyState />}
       />
     </PageLayout>
   )

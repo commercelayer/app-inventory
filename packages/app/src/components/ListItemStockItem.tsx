@@ -1,3 +1,4 @@
+import { appRoutes } from '#data/routes'
 import { makeStockItem } from '#mocks'
 import {
   Avatar,
@@ -8,6 +9,7 @@ import {
   withSkeletonTemplate
 } from '@commercelayer/app-elements'
 import type { StockItem } from '@commercelayer/sdk'
+import { useLocation, useRoute } from 'wouter'
 
 interface Props {
   resource?: StockItem
@@ -17,9 +19,17 @@ interface Props {
 
 export const ListItemStockItem = withSkeletonTemplate<Props>(
   ({ resource = makeStockItem() }): JSX.Element | null => {
+    const [, setLocation] = useLocation()
+
+    const [, params] = useRoute<{ stockLocationId: string }>(
+      appRoutes.stockLocation.path
+    )
+
+    const stockLocationId = params?.stockLocationId ?? ''
+
     return (
       <ListItem
-        tag='div'
+        tag='a'
         icon={
           <Avatar
             alt={resource.sku?.name ?? ''}
@@ -27,6 +37,11 @@ export const ListItemStockItem = withSkeletonTemplate<Props>(
           />
         }
         alignItems='center'
+        onClick={() => {
+          setLocation(
+            appRoutes.stockItem.makePath(stockLocationId, resource.id)
+          )
+        }}
       >
         <div>
           <Text tag='div' weight='medium' variant='info' size='small'>
@@ -43,9 +58,7 @@ export const ListItemStockItem = withSkeletonTemplate<Props>(
             </Spacer>
           )}
         </div>
-        <div>
-          <Text weight='semibold'>x {resource.quantity}</Text>
-        </div>
+        <Text weight='semibold'>x {resource.quantity}</Text>
       </ListItem>
     )
   }

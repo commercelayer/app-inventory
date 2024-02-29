@@ -100,7 +100,6 @@ export function StockItemsList(): JSX.Element {
       <FilteredList
         type='stock_items'
         query={{
-          filters: { stock_location_id_eq: stockLocationId },
           include: ['sku', 'reserved_stock'],
           sort: {
             created_at: 'desc'

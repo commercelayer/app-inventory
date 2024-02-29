@@ -73,7 +73,7 @@ export function StockItemForm({
                   padding='4'
                   fullWidth
                   onClick={() => {
-                    showAddItemOverlay('skus')
+                    showAddItemOverlay({ type: 'skus' })
                   }}
                 />
               ) : (
@@ -83,7 +83,7 @@ export function StockItemForm({
                   variant='card'
                   onSelect={() => {
                     if (defaultValues?.id == null) {
-                      showAddItemOverlay('skus')
+                      showAddItemOverlay({ type: 'skus', excludedId: sku?.id })
                     }
                   }}
                 />

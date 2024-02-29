@@ -35,6 +35,7 @@ export const ListItemSku = withSkeletonTemplate<Props>(
         }
         variant={variant}
         disabled={disabled}
+        className={variant === 'card' ? 'bg-white hover:bg-white' : ''}
       >
         <div>
           <Text tag='div' variant='info' weight='semibold'>

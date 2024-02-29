@@ -8,34 +8,63 @@ import {
 } from '@commercelayer/app-elements'
 import type { FiltersInstructions } from '@commercelayer/app-elements/dist/ui/resources/useResourceFilters/types'
 import type { Sku } from '@commercelayer/sdk'
+import { useState } from 'react'
 import { navigate, useSearch } from 'wouter/use-location'
 
 interface OverlayHook {
-  show: (type: 'skus' | 'bundles') => void
+  show: ({
+    type,
+    excludedId
+  }: {
+    type: 'skus' | 'bundles'
+    excludedId?: string
+  }) => void
   Overlay: React.FC<{ onConfirm: (resource: Sku) => void }>
 }
 
 export function useAddItemOverlay(): OverlayHook {
   const { Overlay: OverlayElement, open, close } = useOverlay()
-
-  const instructions: FiltersInstructions = [
-    {
-      label: 'Search',
-      type: 'textSearch',
-      sdk: {
-        predicate: ['name', 'code'].join('_or_') + '_cont'
-      },
-      render: {
-        component: 'searchBar'
-      }
-    }
-  ]
+  const [excludedId, setExcludedId] = useState<string>()
 
   return {
-    show: () => {
+    show: ({ excludedId }) => {
+      if (excludedId != null) {
+        setExcludedId(excludedId)
+      }
       open()
     },
     Overlay: ({ onConfirm }) => {
+      const instructions: FiltersInstructions = [
+        {
+          label: 'Search',
+          type: 'textSearch',
+          sdk: {
+            predicate: ['name', 'code'].join('_or_') + '_cont'
+          },
+          render: {
+            component: 'searchBar'
+          }
+        }
+      ]
+
+      if (excludedId != null) {
+        instructions.push({
+          label: 'Already selected item',
+          type: 'options',
+          sdk: {
+            predicate: 'id_not_eq',
+            defaultOptions: [excludedId]
+          },
+          render: {
+            component: 'inputToggleButton',
+            props: {
+              mode: 'single',
+              options: [{ value: excludedId, label: excludedId }]
+            }
+          }
+        })
+      }
+
       const queryString = useSearch()
       const { SearchWithNav, FilteredList } = useResourceFilters({
         instructions

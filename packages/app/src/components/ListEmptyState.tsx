@@ -12,11 +12,17 @@ import { Link, useRoute } from 'wouter'
 export const ListEmptyState: FC = () => {
   const { canUser } = useTokenProvider()
 
-  const [, params] = useRoute<{ stockLocationId: string }>(
+  const [, paramsNewStockItem] = useRoute<{ stockLocationId: string }>(
     appRoutes.newStockItem.path
   )
+  const [, paramsNewStockLocation] = useRoute<{ stockLocationId: string }>(
+    appRoutes.stockLocation.path
+  )
 
-  const stockLocationId = params?.stockLocationId ?? ''
+  const stockLocationId =
+    paramsNewStockItem?.stockLocationId ??
+    paramsNewStockLocation?.stockLocationId ??
+    ''
 
   if (canUser('create', 'stock_items')) {
     return (

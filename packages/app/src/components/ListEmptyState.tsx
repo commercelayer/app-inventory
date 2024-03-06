@@ -13,7 +13,7 @@ export const ListEmptyState: FC = () => {
   const { canUser } = useTokenProvider()
 
   const [, params] = useRoute<{ stockLocationId: string }>(
-    appRoutes.newStockItem.path
+    appRoutes.stockLocation.path
   )
 
   const stockLocationId = params?.stockLocationId ?? ''

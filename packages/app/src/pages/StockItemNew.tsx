@@ -43,6 +43,7 @@ export function StockItemNew(): JSX.Element {
           icon: 'x'
         }}
         scrollToTop
+        overlay
       >
         <EmptyState
           title='Permission Denied'

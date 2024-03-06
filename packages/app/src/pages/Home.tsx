@@ -2,18 +2,14 @@ import { ListItemStockLocation } from '#components/ListItemStockLocation'
 import { stockLocationsInstructions } from '#data/filters'
 import {
   EmptyState,
-  PageLayout,
+  HomePageLayout,
   useResourceFilters,
   useTokenProvider
 } from '@commercelayer/app-elements'
-import { navigate, useSearch } from 'wouter/use-location'
+import { navigate, useSearch } from 'wouter/use-browser-location'
 
 export function Home(): JSX.Element {
-  const {
-    canUser,
-    dashboardUrl,
-    settings: { mode }
-  } = useTokenProvider()
+  const { canUser } = useTokenProvider()
 
   const queryString = useSearch()
 
@@ -23,26 +19,14 @@ export function Home(): JSX.Element {
 
   if (!canUser('read', 'stock_locations')) {
     return (
-      <PageLayout title='Inventory' mode={mode}>
+      <HomePageLayout title='Inventory'>
         <EmptyState title='You are not authorized' />
-      </PageLayout>
+      </HomePageLayout>
     )
   }
 
   return (
-    <PageLayout
-      title='Inventory'
-      mode={mode}
-      gap='only-top'
-      navigationButton={{
-        onClick: () => {
-          window.location.href =
-            dashboardUrl != null ? `${dashboardUrl}/hub` : '/'
-        },
-        label: 'Hub',
-        icon: 'arrowLeft'
-      }}
-    >
+    <HomePageLayout title='Inventory'>
       <SearchWithNav
         queryString={queryString}
         onUpdate={(qs) => {
@@ -63,6 +47,6 @@ export function Home(): JSX.Element {
         ItemTemplate={ListItemStockLocation}
         emptyState={<EmptyState title='No stock locations yet!' />}
       />
-    </PageLayout>
+    </HomePageLayout>
   )
 }

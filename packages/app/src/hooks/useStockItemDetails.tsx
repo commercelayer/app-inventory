@@ -17,14 +17,15 @@ export function useStockItemDetails(id: string): {
   } = useCoreApi(
     'stock_items',
     'retrieve',
-    [
-      id,
-      {
-        include: ['stock_location', 'sku', 'reserved_stock']
-      }
-    ],
+    !isMockedId(id)
+      ? [
+          id,
+          {
+            include: ['stock_location', 'sku', 'reserved_stock']
+          }
+        ]
+      : null,
     {
-      isPaused: () => isMockedId(id),
       fallbackData: makeStockItem()
     }
   )

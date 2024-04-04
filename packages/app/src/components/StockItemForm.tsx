@@ -80,7 +80,7 @@ export function StockItemForm({
                 <ListItemSku
                   resource={sku}
                   disabled={defaultValues?.id != null}
-                  variant='card'
+                  variant='boxed'
                   onSelect={() => {
                     if (defaultValues?.id == null) {
                       showAddItemOverlay({ type: 'skus', excludedId: sku?.id })

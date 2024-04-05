@@ -29,7 +29,6 @@ export const ListItemStockItem = withSkeletonTemplate<Props>(
 
     return (
       <ListItem
-        tag='a'
         icon={
           <Avatar
             alt={resource.sku?.name ?? ''}

@@ -100,8 +100,8 @@ export function StockItemEdit(): JSX.Element {
               void sdkClient.stock_items
                 .update(stockItem)
                 .then((updatedStockItem) => {
-                  setLocation(goBackUrl)
                   void mutateStockItem({ ...updatedStockItem })
+                  setLocation(goBackUrl)
                 })
                 .catch((error) => {
                   setApiError(error)

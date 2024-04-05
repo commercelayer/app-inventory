@@ -20,7 +20,6 @@ export const ListItemSku = withSkeletonTemplate<Props>(
   ({ resource = makeSku(), variant, disabled = false, onSelect }) => {
     return (
       <ListItem
-        tag='a'
         onClick={(e) => {
           e.preventDefault()
           if (!disabled && onSelect != null) {
@@ -35,7 +34,7 @@ export const ListItemSku = withSkeletonTemplate<Props>(
         }
         variant={variant}
         disabled={disabled}
-        className={variant === 'card' ? 'bg-white hover:bg-white' : ''}
+        className={variant === 'boxed' ? 'bg-white hover:bg-white' : ''}
       >
         <div>
           <Text tag='div' variant='info' weight='semibold'>
@@ -45,7 +44,7 @@ export const ListItemSku = withSkeletonTemplate<Props>(
             {resource.name}
           </Text>
         </div>
-        {variant === 'card' && !disabled && (
+        {variant === 'boxed' && !disabled && (
           <Icon
             name='pencilSimple'
             size='18'

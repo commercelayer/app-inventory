@@ -14,8 +14,7 @@ export function useStockLocationDetails(id: string): {
     isLoading,
     error,
     mutate: mutateStockLocation
-  } = useCoreApi('stock_locations', 'retrieve', [id], {
-    isPaused: () => isMockedId(id),
+  } = useCoreApi('stock_locations', 'retrieve', !isMockedId(id) ? [id] : null, {
     fallbackData: makeStockLocation()
   })
 

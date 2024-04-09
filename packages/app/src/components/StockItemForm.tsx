@@ -20,7 +20,7 @@ import { ListItemSku } from './ListItemSku'
 const stockItemFormSchema = z.object({
   id: z.string().optional(),
   item: z.string().min(1),
-  quantity: z.string().min(1)
+  quantity: z.string().min(0)
 })
 
 export type StockItemFormValues = z.infer<typeof stockItemFormSchema>
@@ -104,7 +104,7 @@ export function StockItemForm({
               name='quantity'
               label='Quantity'
               type='number'
-              min='1'
+              min='0'
             />
           </Spacer>
         </Section>

@@ -4,8 +4,10 @@ import { stockItemsInstructions } from '#data/filters'
 import { appRoutes } from '#data/routes'
 import { useStockLocationDetails } from '#hooks/useStockLocationDetails'
 import {
+  A,
   Button,
   EmptyState,
+  Icon,
   PageLayout,
   SkeletonTemplate,
   useResourceFilters,
@@ -107,8 +109,20 @@ export function StockItemsList(): JSX.Element {
         }}
         actionButton={
           canUser('create', 'stock_items') ? (
-            <Link href={appRoutes.newStockItem.makePath(stockLocationId)}>
-              Add new
+            <Link
+              href={appRoutes.newStockItem.makePath(stockLocationId)}
+              asChild
+            >
+              <A
+                href=''
+                variant='secondary'
+                size='mini'
+                alignItems='center'
+                aria-label='Add stock item'
+              >
+                <Icon name='plus' />
+                Stock item
+              </A>
             </Link>
           ) : undefined
         }

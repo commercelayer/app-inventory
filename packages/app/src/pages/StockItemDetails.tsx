@@ -4,6 +4,7 @@ import {
   DropdownDivider,
   DropdownItem,
   EmptyState,
+  Icon,
   PageLayout,
   SkeletonTemplate,
   Spacer,
@@ -94,6 +95,11 @@ export const StockItemDetails: FC = () => {
 
   const contextMenu = (
     <Dropdown
+      dropdownLabel={
+        <Button variant='secondary' size='small'>
+          <Icon name='dotsThree' size={16} weight='bold' />
+        </Button>
+      }
       dropdownItems={
         <>
           {contextMenuEdit}

@@ -8,6 +8,7 @@ export function ListEmptyStateSKUs({ scope = 'history' }: Props): JSX.Element {
   if (scope === 'userFiltered') {
     return (
       <EmptyState
+        className='bg-white'
         title='No SKUs found!'
         description={
           <div>
@@ -20,6 +21,7 @@ export function ListEmptyStateSKUs({ scope = 'history' }: Props): JSX.Element {
 
   return (
     <EmptyState
+      className='bg-white'
       title='No SKUs yet!'
       description={
         <div>

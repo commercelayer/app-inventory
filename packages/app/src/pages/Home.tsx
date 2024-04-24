@@ -1,3 +1,4 @@
+import { ListEmptyStateStockLocations } from '#components/ListEmptyStateStockLocations'
 import { ListItemStockLocation } from '#components/ListItemStockLocation'
 import { stockLocationsInstructions } from '#data/filters'
 import {
@@ -13,7 +14,7 @@ export function Home(): JSX.Element {
 
   const queryString = useSearch()
 
-  const { SearchWithNav, FilteredList } = useResourceFilters({
+  const { SearchWithNav, FilteredList, hasActiveFilter } = useResourceFilters({
     instructions: stockLocationsInstructions
   })
 
@@ -45,7 +46,11 @@ export function Home(): JSX.Element {
           }
         }}
         ItemTemplate={ListItemStockLocation}
-        emptyState={<EmptyState title='No stock locations yet!' />}
+        emptyState={
+          <ListEmptyStateStockLocations
+            scope={hasActiveFilter ? 'userFiltered' : 'history'}
+          />
+        }
       />
     </HomePageLayout>
   )

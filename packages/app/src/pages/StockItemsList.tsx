@@ -1,4 +1,4 @@
-import { ListEmptyState } from '#components/ListEmptyState'
+import { ListEmptyStateStockItems } from '#components/ListEmptyStateStockItems'
 import { ListItemStockItem } from '#components/ListItemStockItem'
 import { stockItemsInstructions } from '#data/filters'
 import { appRoutes } from '#data/routes'
@@ -34,7 +34,7 @@ export function StockItemsList(): JSX.Element {
   const queryString = useSearch()
   const [, setLocation] = useLocation()
 
-  const { SearchWithNav, FilteredList } = useResourceFilters({
+  const { SearchWithNav, FilteredList, hasActiveFilter } = useResourceFilters({
     instructions: stockItemsInstructions({ stockLocationId })
   })
 
@@ -127,7 +127,11 @@ export function StockItemsList(): JSX.Element {
           ) : undefined
         }
         ItemTemplate={ListItemStockItem}
-        emptyState={<ListEmptyState />}
+        emptyState={
+          <ListEmptyStateStockItems
+            scope={hasActiveFilter ? 'userFiltered' : 'history'}
+          />
+        }
       />
     </PageLayout>
   )

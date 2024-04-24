@@ -1,4 +1,4 @@
-import { ListEmptyState } from '#components/ListEmptyState'
+import { ListEmptyStateSKUs } from '#components/ListEmptyStateSKUs'
 import { ListItemSku } from '#components/ListItemSku'
 import {
   Card,
@@ -66,9 +66,10 @@ export function useAddItemOverlay(): OverlayHook {
       }
 
       const queryString = useSearch()
-      const { SearchWithNav, FilteredList } = useResourceFilters({
-        instructions
-      })
+      const { SearchWithNav, FilteredList, hasActiveFilter } =
+        useResourceFilters({
+          instructions
+        })
 
       return (
         <OverlayElement backgroundColor='light'>
@@ -136,7 +137,11 @@ export function useAddItemOverlay(): OverlayHook {
                     {...props}
                   />
                 )}
-                emptyState={<ListEmptyState />}
+                emptyState={
+                  <ListEmptyStateSKUs
+                    scope={hasActiveFilter ? 'userFiltered' : 'history'}
+                  />
+                }
                 hideTitle
               />
             </Card>

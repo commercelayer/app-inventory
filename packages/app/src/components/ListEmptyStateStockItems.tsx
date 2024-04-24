@@ -5,11 +5,16 @@ import {
   EmptyState,
   useTokenProvider
 } from '@commercelayer/app-elements'
-import type { FC } from 'react'
 
 import { Link, useRoute } from 'wouter'
 
-export const ListEmptyState: FC = () => {
+interface Props {
+  scope?: 'history' | 'userFiltered'
+}
+
+export function ListEmptyStateStockItems({
+  scope = 'history'
+}: Props): JSX.Element {
   const { canUser } = useTokenProvider()
 
   const [, paramsNewStockItem] = useRoute<{ stockLocationId: string }>(
@@ -23,6 +28,19 @@ export const ListEmptyState: FC = () => {
     paramsNewStockItem?.stockLocationId ??
     paramsNewStockLocation?.stockLocationId ??
     ''
+
+  if (scope === 'userFiltered') {
+    return (
+      <EmptyState
+        title='No stock items found!'
+        description={
+          <div>
+            <p>We didn't find any stock item matching the current search.</p>
+          </div>
+        }
+      />
+    )
+  }
 
   if (canUser('create', 'stock_items')) {
     return (

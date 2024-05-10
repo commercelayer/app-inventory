@@ -68,6 +68,7 @@ export function StockItemForm({
             <Spacer top='2'>
               {stockItemFormWatchedItem == null ? (
                 <Button
+                  type='button'
                   variant='relationship'
                   fullWidth
                   onClick={() => {

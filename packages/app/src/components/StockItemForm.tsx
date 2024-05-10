@@ -1,7 +1,6 @@
 import { useAddItemOverlay } from '#hooks/useAddItemOverlay'
 import {
   Button,
-  ButtonCard,
   HookedForm,
   HookedInput,
   HookedValidationApiError,
@@ -68,14 +67,15 @@ export function StockItemForm({
             <Text weight='semibold'>SKU</Text>
             <Spacer top='2'>
               {stockItemFormWatchedItem == null ? (
-                <ButtonCard
-                  iconLabel='Add item'
-                  padding='4'
+                <Button
+                  variant='relationship'
                   fullWidth
                   onClick={() => {
                     showAddItemOverlay({ type: 'skus' })
                   }}
-                />
+                >
+                  Add item
+                </Button>
               ) : (
                 <ListItemSku
                   resource={sku}

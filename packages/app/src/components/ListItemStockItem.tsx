@@ -57,7 +57,9 @@ export const ListItemStockItem = withSkeletonTemplate<Props>(
             </Spacer>
           )}
         </div>
-        <Text weight='semibold'>x {resource.quantity}</Text>
+        <Text weight='semibold' wrap='nowrap'>
+          x {resource.quantity}
+        </Text>
       </ListItem>
     )
   }
